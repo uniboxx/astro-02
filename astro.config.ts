@@ -1,18 +1,18 @@
 import { defineConfig } from 'astro/config';
 
-import cloudflare from '@astrojs/cloudflare';
+// import cloudflare from '@astrojs/cloudflare';
 
 import svelte from '@astrojs/svelte';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
 
-  adapter: cloudflare({
-    imageService: 'cloudflare',
-  }),
+  adapter: netlify(),
 
   integrations: [svelte()],
 
