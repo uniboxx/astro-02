@@ -16,21 +16,11 @@ const { rows: posts } = await turso.execute('select * from posts');
         return (
           <div class="p-2">
             <p>Author: {post.author}</p>
-            <p>Content: {post.body}</p>
-            <p>
-              Created at:{' '}
-              {new Intl.DateTimeFormat('it-IT', {
-               weekday: 'long',
-                day:'2-digit',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'Europe/Rome',
-              }).format(createdAt)}
-            </p>
-           { createdAtStr === updatedAtStr &&  <p>
-              Updated at:{' '}
+            
+            <p class="flex" >
+              <span class="min-w-20">Created:</span>
+              <span>
+
               {new Intl.DateTimeFormat('it-IT', {
                 weekday: 'long',
                 day:'2-digit',
@@ -39,8 +29,25 @@ const { rows: posts } = await turso.execute('select * from posts');
                 hour: '2-digit',
                 minute: '2-digit',
                 timeZone: 'Europe/Rome',
+              }).format(createdAt)}
+                </span>
+            </p>
+           { createdAtStr !== updatedAtStr &&  <p class="flex">
+           <span class="min-w-20">Updated:</span>
+              <span>
+                {new Intl.DateTimeFormat('it-IT', {
+                weekday: 'long',
+                day:'2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Europe/Rome',
               }).format(updatedAt)}
+              </span>
             </p>}
+            <p class="text-center">Content </p>
+            <p>{post.body}</p>
           </div>
             <hr class="max-w-[80vw] m-auto mb-2" />
         );
