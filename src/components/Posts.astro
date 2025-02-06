@@ -29,7 +29,7 @@ const { rows: posts } = await turso.execute('select * from posts');
                 timeZone: 'Europe/Rome',
               }).format(createdAt)}
             </p>
-            <p>
+           { createdAtStr === updatedAtStr &&  <p>
               Updated at:{' '}
               {new Intl.DateTimeFormat('it-IT', {
                 weekday: 'long',
@@ -40,7 +40,7 @@ const { rows: posts } = await turso.execute('select * from posts');
                 minute: '2-digit',
                 timeZone: 'Europe/Rome',
               }).format(updatedAt)}
-            </p>
+            </p>}
           </div>
             <hr />
         );
