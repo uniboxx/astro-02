@@ -4,8 +4,8 @@ import { turso } from '../turso';
 
 const { rows: posts } = await turso.execute('select * from posts');
 ---
-<h2 class="text-2xl text-center my-4 font-bold">Posts</h2>
-  <div class="max-w-90 m-auto my-8">
+<h2 class="text-2xl text-center p-2 font-bold">Posts</h2>
+  <div class="max-w-90 m-auto">
     {
       posts.map((post: any) => {
         const createdAtStr = post.created_at.split(' ').join('T') + '.000Z';
@@ -14,7 +14,7 @@ const { rows: posts } = await turso.execute('select * from posts');
         const updatedAt = new Date(updatedAtStr);
 
         return (
-          <div class="my-4">
+          <div class="p-2">
             <p>Author: {post.author}</p>
             <p>Content: {post.body}</p>
             <p>
@@ -42,7 +42,7 @@ const { rows: posts } = await turso.execute('select * from posts');
               }).format(updatedAt)}
             </p>}
           </div>
-            <hr />
+            <hr class="max-w-[80vw] m-auto mb-2" />
         );
       })
     }
