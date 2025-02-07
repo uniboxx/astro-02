@@ -1,0 +1,42 @@
+---
+export const prerender = true;
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import slugify from 'slugify';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const blog = await getCollection('blog');
+
+  const result = blog.map((post: any) => {
+    const slug = slugify(post.data.title, { lower: true, trim: true });
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+
+  return result;
+}) satisfies GetStaticPaths;
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+if (!post) {
+  return Astro.redirect('/404');
+}
+const { Content, headings } = await render(post);
+// console.log(headings);
+---
+
+<BaseLayout pageTitle={post.data.title}>
+  <div class="border-1 border-blue-800 p-2 max-w-max m-auto">
+    <h2 class="px-2">Title: {post.data.title}</h2>
+    <div class="px-2">
+      <p>Content:</p>
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

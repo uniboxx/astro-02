@@ -1,6 +1,6 @@
 ---
-import * as greatPost from './posts/great-post.md';
-const posts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+import * as greatPost from './great-post.md';
+const posts = Object.values(import.meta.glob('./*.md', { eager: true }));
 ---
 
 <p>{greatPost.frontmatter.title}</p>

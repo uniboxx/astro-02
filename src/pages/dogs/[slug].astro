@@ -12,16 +12,32 @@ export const getStaticPaths = (async () => {
     const slug = slugify(dog.data.breed, { lower: true, trim: true });
     return {
       params: { slug },
-      props: dog.data,
+      props: { dog },
     };
   });
 
   return result;
 }) satisfies GetStaticPaths;
 
-const { breed } = Astro.props;
+const { dog } = Astro.props;
+if (!dog) {
+  return Astro.redirect('/404');
+}
 ---
 
-<BaseLayout pageTitle={breed}>
-  <h2>Good dog, {breed}!</h2>
+<BaseLayout pageTitle={dog.data.breed}>
+  <p class="px-2">Good dog, {dog.data.breed}!</p>
+  <p class="px-2">
+    Its temperament is {
+      dog.data.temperament.map((temp, index, array) => (
+        <span>
+          {index === array.length - 1
+            ? `${temp}.`
+            : index === array.length - 2
+              ? `${temp} and `
+              : `${temp}, `}{' '}
+        </span>
+      ))
+    }
+  </p>
 </BaseLayout>

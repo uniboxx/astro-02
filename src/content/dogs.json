@@ -2,7 +2,7 @@
   {
     "id": "1",
     "breed": "Labrador Retriever",
-    "temperament": ["Friendly"]
+    "temperament": ["Friendly", "Curious", "Sunny"]
   },
   {
     "id": "2",
