@@ -32,7 +32,9 @@ const { Content, headings } = await render(post);
 ---
 
 <BaseLayout pageTitle={post.data.title}>
-  <div class="border-1 border-blue-800 p-2 max-w-max m-auto">
+  <div
+    class="border-1 border-blue-800 px-4 py-10 max-w-max m-auto rounded-full"
+  >
     <h2 class="px-2">Title: {post.data.title}</h2>
     <div class="px-2">
       <p>Content:</p>
