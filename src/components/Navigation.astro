@@ -1,5 +1,31 @@
-<menu class="flex gap-8 pl-4 pb-4">
-  <li><a class="text-lg underline" href="/">Home</a></li>
-  <li><a class="text-lg underline" href="/add-post">Add Post</a></li>
-  <li><a class="text-lg underline" href="/dogs">Dogs</a></li>
-</menu>
+---
+const { title } = Astro.props;
+---
+
+<div class="flex justify-between items-center py-4">
+  <menu class="flex gap-8 pl-4">
+    <li><a class="text-lg underline" href="/">Home</a></li>
+    <li><a class="text-lg underline" href="/add-post">Add Post</a></li>
+    <li><a class="text-lg underline" href="/dogs">Dogs</a></li>
+  </menu>
+
+  <div class="flex gap-8 pr-4">
+    <button
+      class="border-1 border-gray-300 py-2 px-4 rounded cursor-pointer"
+      id="login">Login</button
+    >
+    <button
+      class="border-1 border-gray-300 py-2 px-4 rounded cursor-pointer"
+      id="logout">Logout</button
+    >
+  </div>
+</div>
+<h1 class="text-center text-4xl">{title}</h1>
+
+<script>
+  const { signIn, signOut } = await import('auth-astro/client');
+  (document.querySelector('#login')! as HTMLButtonElement).onclick = () =>
+    signIn('github');
+  (document.querySelector('#logout')! as HTMLButtonElement).onclick = () =>
+    signOut();
+</script>
