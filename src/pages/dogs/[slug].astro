@@ -1,0 +1,27 @@
+---
+export const prerender = true;
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import slugify from 'slugify';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const dogs = await getCollection('dogs');
+
+  const result = dogs.map((dog) => {
+    const slug = slugify(dog.data.breed, { lower: true, trim: true });
+    return {
+      params: { slug },
+      props: dog.data,
+    };
+  });
+
+  return result;
+}) satisfies GetStaticPaths;
+
+const { breed } = Astro.props;
+---
+
+<BaseLayout pageTitle={breed}>
+  <h2>Good dog, {breed}!</h2>
+</BaseLayout>

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "breed": "Labrador Retriever",
+    "temperament": ["Friendly"]
+  },
+  {
+    "id": "2",
+    "breed": "German Shepherd",
+    "temperament": ["Confident"]
+  },
+  {
+    "id": "3",
+    "breed": "Golden Retriever",
+    "temperament": ["Intelligent"]
+  }
+]

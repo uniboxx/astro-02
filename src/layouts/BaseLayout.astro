@@ -1,5 +1,7 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
 const { pageTitle } = Astro.props;
 ---
 
@@ -14,10 +16,12 @@ const { pageTitle } = Astro.props;
     />
 
     <meta name="generator" content={Astro.generator} />
-    <title>Bun Astro Svelte | {pageTitle}</title>
+    <title>Astro Svelte | {pageTitle}</title>
+    <ClientRouter />
   </head>
   <body>
     <header class="py-4">
+      <Navigation />
       <h1 class="text-center text-4xl">{pageTitle}</h1>
     </header>
     <slot />
