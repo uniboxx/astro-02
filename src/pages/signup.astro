@@ -1,0 +1,51 @@
+---
+import BaseLayout from 'layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageTitle="User Registration">
+  <form
+    class="p-4 m-auto border-green-600 rounded max-w-90 border-1"
+    action="api/register"
+    method="post"
+  >
+    <label for="username"
+      >Username
+      <input type="text" name="username" required value="" />
+    </label>
+    <label for="email"
+      >Email
+      <input type="text" name="email" required />
+    </label>
+    <label for="password"
+      >Password
+      <input type="password" name="password" required />
+    </label>
+    <label for="passwordConfirm"
+      >Confirm password
+      <input type="password" name="passwordConfirm" required />
+    </label>
+    <button
+      class="block px-4 py-2 mt-4 ml-auto bg-green-600 rounded cursor-pointer text-amber-50 hover:bg-green-500"
+      >SignUp</button
+    >
+  </form>
+</BaseLayout>
+
+<style>
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:first-child) {
+      margin-top: 16px;
+    }
+  }
+  input {
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+</style>
