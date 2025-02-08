@@ -6,7 +6,6 @@ import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
 export const POST: APIRoute = async function ({ request, redirect }) {
-  console.log(request);
   const data = Object.fromEntries(await request.formData());
   const { username, email, password } = data;
   bcrypt.hash(password.toString(), saltRounds, async function (err, hash) {
