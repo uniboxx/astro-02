@@ -9,7 +9,6 @@
   export function onSubmit(e: Event) {
     e.preventDefault();
     signup(username, email, password);
-    signin(email, password);
   }
 </script>
 
