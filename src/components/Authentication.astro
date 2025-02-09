@@ -1,0 +1,35 @@
+---
+import { auth } from '@utils/auth';
+import AuthBtn from './AuthBtn.svelte';
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+const username = session?.user?.name;
+console.log(username);
+---
+
+{
+  username ? (
+    <div class="flex justify-end w-full gap-4 pr-4 md:w-max">
+      <p class="pr-4">{username[0].toUpperCase() + username.slice(1)}</p>/
+      <button id="logout">Logout</button>
+    </div>
+  ) : (
+    <div class="flex justify-end w-full gap-4 pr-4 md:w-max">
+      <AuthBtn client:load mode="signin" />
+      <AuthBtn client:load mode="signup" />
+    </div>
+  )
+}
+
+<style>
+  #logout {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  import { signout } from '@utils/sign-out';
+
+  document.getElementById('logout')?.addEventListener('click', signout);
+</script>

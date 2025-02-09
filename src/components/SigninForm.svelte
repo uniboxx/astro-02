@@ -1,14 +1,12 @@
 <script lang="ts">
-  import { signup } from '@utils/sign-up';
+  import { signin } from '@utils/sign-in';
 
-  let username = $state('');
   let email = $state('');
 
   let password = $state('');
-  let passwordConfirm = $state('');
+
   export function onSubmit(e: Event) {
     e.preventDefault();
-    signup(username, email, password);
     signin(email, password);
   }
 </script>
@@ -19,18 +17,6 @@
   onsubmit={onSubmit}
 >
   <!-- method="post" -->
-  <label for="username"
-    ><p>Username <span class="text-sm">(min length 8 characters)</span></p>
-    <input
-      id="username"
-      type="text"
-      name="username"
-      required
-      minlength="8"
-      maxlength="32"
-      bind:value={username}
-    />
-  </label>
 
   <label for="email"
     >Email
@@ -49,27 +35,10 @@
       bind:value={password}
     />
   </label>
-  <label for="passwordConfirm"
-    ><p>
-      Confirm password <span class="text-sm">(min length 8 characters)</span>
-    </p>
-    <input
-      id="passwordConfirm"
-      type="password"
-      name="passwordConfirm"
-      required
-      bind:value={passwordConfirm}
-      minlength="8"
-      maxlength="32"
-      pattern={password}
-    />
-  </label>
-  {#if password !== passwordConfirm && passwordConfirm}
-    <p class="text-sm text-red-500">Passwords don't match</p>
-  {/if}
+
   <button
     class="block px-4 py-2 mt-4 ml-auto bg-green-600 rounded cursor-pointer text-amber-50 hover:bg-green-500"
-    >SignUp</button
+    >Login</button
   >
 </form>
 
