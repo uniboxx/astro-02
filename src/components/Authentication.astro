@@ -2,12 +2,14 @@
 import { auth } from '@utils/auth';
 import AuthBtn from './AuthBtn.svelte';
 import Username from '@components/Username.svelte';
+import githubLogo from '@assets/images/github.png';
+import googleLogo from '@assets/images/google.png';
+
 const session = await auth.api.getSession({
   headers: Astro.request.headers,
 });
 const username = session?.user?.name;
-import githubLogo from '@assets/images/github.png';
-import googleLogo from '@assets/images/google.png';
+const disabled = true;
 ---
 
 {
@@ -19,27 +21,49 @@ import googleLogo from '@assets/images/google.png';
     <div class="relative flex flex-col gap-1 px-2 ml-auto md:px-4 md:ml-0 md:order-2">
       <p
         id="signin"
-        class="px-4 py-2 border-gray-300 rounded cursor-pointer w-45 border-1 md:hidden text-end "
+        class="z-20 px-4 py-2 border-gray-300 rounded cursor-pointer w-46 border-1 md:hidden text-end "
       >
         Signin with socials
       </p>
       <div
         id="btns"
-        class="absolute z-10 flex-col items-center hidden gap-2 translate-y-10 border-gray-300 md:translate-y-0 md:static md:flex md:flex-row md:justify-end md:items-center w-max bg-amber-50 md:bg-transparent border-1 md:border-none"
+        class="absolute z-10 flex flex-col items-center gap-2 translate-y-0 border-gray-300 opacity-0 md:translate-y-0 md:static md:flex md:flex-row md:justify-end md:items-center w-46 md:w-max bg-amber-50 md:bg-transparent border-1 md:border-none md:opacity-100"
       >
-        <AuthBtn client:load mode="signinWithGithub" logo={githubLogo} />
+        <AuthBtn
+          client:load
+          mode="signinWithGithub"
+          logo={githubLogo}
+          disabled={disabled}
+        />
         <hr class="md:hidden w-[80%]" />
-        <AuthBtn client:load mode="signinWithGoogle" logo={googleLogo} />
+        <AuthBtn
+          client:load
+          mode="signinWithGoogle"
+          logo={googleLogo}
+          disabled={disabled}
+        />
         {/* <AuthBtn client:load mode="signup" /> */}
       </div>
     </div>
   )
 }
+<style>
+  #btns {
+    transition: 0.3s;
+    transform: translatey(0);
+    &.open {
+      transform: translateY(2.5rem);
+      opacity: 100;
+    }
+  }
+</style>
 
 <script>
   const btns = document.getElementById('btns');
+  const buttons = btns?.querySelectorAll('button');
+  console.log(buttons);
   document.getElementById('signin')?.addEventListener('click', (e) => {
-    btns?.classList.toggle('hidden');
-    btns?.classList.toggle('flex');
+    btns?.classList.toggle('open');
+    buttons?.forEach((button) => (button.disabled = !button.disabled));
   });
 </script>
