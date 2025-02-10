@@ -13,3 +13,8 @@ export async function signinWithGithub() {
     provider: 'github',
   });
 }
+export async function signinWithGoogle() {
+  return await authClient.signIn.social({
+    provider: 'google',
+  });
+}

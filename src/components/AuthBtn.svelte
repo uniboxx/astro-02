@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { signinWithGithub } from '@utils/auth-client';
+  import { signinWithGithub, signinWithGoogle } from '@utils/auth-client';
   const { mode } = $props();
   const text =
     mode[0].toUpperCase() +
@@ -14,6 +14,13 @@
   class="px-4 py-2 border-gray-300 rounded cursor-pointer border-1"
   id={mode}
   onclick={signinWithGithub}
+>
+  {text}
+</button>
+<button
+  class="px-4 py-2 border-gray-300 rounded cursor-pointer border-1"
+  id={mode}
+  onclick={signinWithGoogle}
 >
   {text}
 </button>
