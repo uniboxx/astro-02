@@ -8,6 +8,7 @@
   let passwordConfirm = $state('');
   export function onSubmit(e: Event) {
     e.preventDefault();
+
     signup(username, email, password);
   }
 </script>

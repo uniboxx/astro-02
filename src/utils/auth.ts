@@ -14,11 +14,15 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
   },
-  // socialProviders: {
-  //   github: {
-  //     clientId: import.meta.env.GITHUB_CLIENT_ID,
-  //     clientSecret: import.meta.env.GITHUB_CLIENT_SECRET,
-  //   },
-  // },
+  emailVerification: {
+    sendOnSignUp: true,
+  },
+  socialProviders: {
+    github: {
+      clientId: import.meta.env.GITHUB_CLIENT_ID as string,
+      clientSecret: import.meta.env.GITHUB_CLIENT_SECRET as string,
+    },
+  },
 });

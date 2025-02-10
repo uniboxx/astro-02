@@ -7,7 +7,7 @@ export async function signup(name: string, email: string, password: string) {
       email, // user email address
       password, // user password -> min 8 characters by default
       // image, // user image url (optional)
-      callbackURL: '/dashboard', // a url to redirect to after the user verifies their email (optional)
+      callbackURL: '/', // a url to redirect to after the user verifies their email (optional)
     },
     {
       onRequest: (ctx) => {
@@ -22,5 +22,4 @@ export async function signup(name: string, email: string, password: string) {
       },
     }
   );
-  console.log(data, error);
 }

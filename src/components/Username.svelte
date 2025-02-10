@@ -2,17 +2,16 @@
   import { signout } from '@utils/sign-out';
 
   const { username } = $props();
+
   let open = $state(false);
-  const cap = username[0].toUpperCase() + username.slice(1);
   function toggle() {
-    console.log(open);
     open = !open;
   }
 </script>
 
 <div id="dropdown" class="relative py-2 px-4" class:open>
-  <button id="name" class="relative flex items-center" onclick={toggle}>
-    {cap}
+  <button id="name" class="relative flex items-center" onclick={toggle}
+    >{username}
     <span class={`ml-2 ${open ? 'rotate' : ''}`}>&#9650;</span>
   </button>
   <ul id="submenu" class="absolute border-1 border-gray-200" class:open>

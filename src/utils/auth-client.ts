@@ -7,3 +7,9 @@ export const authClient = createAuthClient({
 });
 
 export const { signIn, signOut } = authClient;
+
+export async function signinWithGithub() {
+  return await authClient.signIn.social({
+    provider: 'github',
+  });
+}
