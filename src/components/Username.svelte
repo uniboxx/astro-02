@@ -14,7 +14,7 @@
     >{username}
     <span class={`ml-2 ${open ? 'rotate' : ''}`}>&#9650;</span>
   </button>
-  <ul id="submenu" class="absolute border-1 border-gray-200" class:open>
+  <ul id="submenu" class="absolute border-1 border-gray-200 right-8" class:open>
     <li>
       <button
         class="px-4 py-2 cursor-pointer underline"
