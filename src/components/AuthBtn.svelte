@@ -8,19 +8,16 @@
     mode.slice(6, 10) +
     ' ' +
     mode.slice(10);
+  function signIn() {
+    if (mode === 'signinWithGithub') return signinWithGithub();
+    if (mode === 'signinWithGoogle') return signinWithGoogle();
+  }
 </script>
 
 <button
   class="px-4 py-2 border-gray-300 rounded cursor-pointer border-1"
   id={mode}
-  onclick={signinWithGithub}
->
-  {text}
-</button>
-<button
-  class="px-4 py-2 border-gray-300 rounded cursor-pointer border-1"
-  id={mode}
-  onclick={signinWithGoogle}
+  onclick={signIn}
 >
   {text}
 </button>
