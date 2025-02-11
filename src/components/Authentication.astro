@@ -18,17 +18,17 @@ const disabled = true;
       <Username username={username} client:load />
     </div>
   ) : (
-    <div class="relative flex flex-col gap-1 px-2 ml-auto md:px-4 md:ml-0 md:order-2">
+    <div
+      id="dropdown"
+      class="relative flex flex-col gap-1 px-2 ml-auto w-max md:px-4 md:ml-0 md:order-2"
+    >
       <p
         id="signin"
-        class="z-20 px-4 py-2 border-gray-300 rounded cursor-pointer w-46 border-1 md:hidden text-end "
+        class="z-20 px-4 py-2 border-gray-300 rounded cursor-pointer border-1 md:hidden text-end "
       >
         Signin with socials
       </p>
-      <div
-        id="btns"
-        class="absolute z-10 flex flex-col items-center gap-2 translate-y-0 border-gray-300 opacity-0 md:translate-y-0 md:static md:flex md:flex-row md:justify-end md:items-center w-46 md:w-max bg-amber-50 md:bg-transparent border-1 md:border-none md:opacity-100"
-      >
+      <div id="btns" class="bg-amber-50">
         <AuthBtn
           client:load
           mode="signinWithGithub"
@@ -48,12 +48,42 @@ const disabled = true;
   )
 }
 <style>
+  #signin {
+    width: 11.5rem;
+  }
   #btns {
-    transition: 0.3s;
-    transform: translatey(0);
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    transition: 0.4s;
+    z-index: 0;
+    max-height: 0;
+    overflow: hidden;
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    width: 11.5rem;
+
+    @media screen and (min-width: 480px) {
+      position: static;
+      max-height: unset;
+      flex-direction: row;
+      border: none;
+      overflow: unset;
+      background-color: transparent;
+      width: max-content;
+    }
+
     &.open {
-      transform: translateY(2.5rem);
-      opacity: 100;
+      /* transform: translateY(2.5rem); */
+      max-height: 6rem;
+      z-index: 10;
+      border-bottom: 1px solid #d3d3d3;
+      & button {
+        cursor: pointer;
+      }
     }
   }
 </style>
