@@ -1,0 +1,54 @@
+---
+import Authentication from '@components/Authentication.astro';
+---
+
+<header>
+  <menu>
+    <li><a href="/">Home</a></li>
+    <li><a href="/add-post">Add Post</a></li>
+    <li><a href="/dogs">Dogs</a></li>
+    <li><a href="/blog">Blog</a></li>
+  </menu>
+  <Authentication />
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+    gap: 16px;
+
+    menu {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      order: 2;
+      z-index: 5;
+      gap: 8px;
+      li {
+        a {
+          font-size: 1.125rem;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 30rem) {
+    header {
+      padding: 16px;
+    }
+  }
+</style>
+
+<script>
+  // const { signIn, signOut } = await import('auth-astro/client');
+  // (document.querySelector('#login')! as HTMLButtonElement).onclick = () =>
+  //   signIn('github');
+  // (document.querySelector('#logout')! as HTMLButtonElement).onclick = () =>
+  //   signOut();
+</script>

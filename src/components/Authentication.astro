@@ -18,26 +18,18 @@ const disabled = true;
       <Username username={username} client:load />
     </div>
   ) : (
-    <div
-      id="dropdown"
-      class="relative flex flex-col gap-1 px-2 ml-auto w-max md:px-4 md:ml-0 md:order-2"
-    >
-      <p
-        id="signin"
-        class="z-20 px-4 py-2 border-gray-300 rounded cursor-pointer border-1 md:hidden text-end "
-      >
-        Signin with socials
-      </p>
-      <div id="btns" class="bg-amber-50">
+    <div id="dropdown">
+      <p id="signin">Signin with socials</p>
+      <div id="btns">
         <AuthBtn
-          client:load
+          client:only
           mode="signinWithGithub"
           logo={githubLogo}
           disabled={disabled}
         />
-        <hr class="md:hidden w-[80%]" />
+        <hr />
         <AuthBtn
-          client:load
+          client:only
           mode="signinWithGoogle"
           logo={googleLogo}
           disabled={disabled}
@@ -48,8 +40,23 @@ const disabled = true;
   )
 }
 <style>
+  #dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 8px;
+    margin-left: auto;
+    width: max-content;
+  }
   #signin {
     width: 11.5rem;
+    z-index: 20;
+    padding: 5px 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
   }
   #btns {
     position: absolute;
@@ -60,11 +67,15 @@ const disabled = true;
     align-items: center;
     transition: 0.4s;
     z-index: 0;
-    max-height: 0;
+    max-height: 0rem;
     overflow: hidden;
     border-left: 1px solid #d3d3d3;
     border-right: 1px solid #d3d3d3;
     width: 11.5rem;
+    background-color: rgb(255 251 235);
+    hr {
+      width: 80%;
+    }
 
     @media screen and (min-width: 480px) {
       position: static;
@@ -84,6 +95,19 @@ const disabled = true;
       & button {
         cursor: pointer;
       }
+    }
+  }
+  @media screen and (min-width: 30rem) {
+    #dropdown {
+      padding: 0 16px;
+      margin-left: 0;
+      order: 2;
+    }
+    #signin {
+      display: none;
+    }
+    #btns hr {
+      display: none;
     }
   }
 </style>

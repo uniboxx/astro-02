@@ -15,12 +15,36 @@
   }
 </script>
 
-<button
-  class="flex items-center gap-2 px-4 py-2 rounded cursor-pointer md:border-gray-300 md:border-1"
-  id={mode}
-  onclick={signIn}
-  {disabled}
->
-  <img class="w-4 md:w-5" src={logo.src} alt={`${text.slice(10)} logo`} />
-  <span class="text-sm">{text}</span>
+<button id={mode} onclick={signIn} {disabled}>
+  <img src={logo.src} alt={`${text.slice(10)} logo`} />
+  <span>{text}</span>
 </button>
+
+<style>
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+
+    img {
+      width: 1rem;
+    }
+    span {
+      font-size: 0.875rem;
+    }
+  }
+  @media screen and (min-width: 30rem) {
+    button {
+      border: 1px solid lightgray;
+      img {
+        width: 1.25rem;
+      }
+    }
+  }
+</style>

@@ -7,18 +7,31 @@ const dogs = await getCollection('dogs');
 ---
 
 <BaseLayout pageTitle="Dogs">
-  <ul class="list-none m-auto max-w-max">
+  <ul>
     {
       dogs.map((dog) => {
         const breed = slugify(dog.data.breed, { lower: true, trim: true });
         return (
-          <li class="my-2 underline">
-            <a class="text-blue-800" href={`dogs/${breed}`}>
-              {dog.data.breed}
-            </a>
+          <li>
+            <a href={`dogs/${breed}`}>{dog.data.breed}</a>
           </li>
         );
       })
     }
   </ul>
 </BaseLayout>
+
+<style>
+  ul {
+    margin: auto;
+    max-width: max-content;
+    list-style: none;
+    li {
+      margin: 8px;
+      a {
+        text-decoration: underline;
+        color: blue;
+      }
+    }
+  }
+</style>

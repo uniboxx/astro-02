@@ -6,9 +6,21 @@ import Posts from '../components/Posts.astro';
 ---
 
 <BaseLayout pageTitle="Homepage">
-  <p class="text-2xl text-center px-4">
-    <span class="text-3xl font-light">Studiando: </span>Astro 5 + <Welcome />
+  <p>
+    <span>Studiando: </span>Astro 5 + <Welcome />
   </p>
 
   <Posts />
 </BaseLayout>
+
+<style>
+  p {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 4px;
+    span:first-child {
+      font-size: 1.7rem;
+      font-weight: 300;
+    }
+  }
+</style>

@@ -26,8 +26,8 @@ if (!dog) {
 ---
 
 <BaseLayout pageTitle={dog.data.breed}>
-  <p class="px-2">Good dog, {dog.data.breed}!</p>
-  <p class="px-2">
+  <p>Good dog, {dog.data.breed}!</p>
+  <p>
     Its temperament is {
       dog.data.temperament.map((temp, index, array) => (
         <span>
@@ -41,3 +41,9 @@ if (!dog) {
     }
   </p>
 </BaseLayout>
+
+<style>
+  p {
+    padding: 0 8px;
+  }
+</style>

@@ -1,0 +1,50 @@
+<form action="/api/create-post" method="post">
+  <label for="author"
+    >Author
+    <input type="text" id="author" name="author" />
+  </label>
+  <label for="body"
+    >Content
+    <textarea id="body" name="body" rows="5"></textarea>
+  </label>
+  <button>Invia</button>
+</form>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 2px solid lightgray;
+    padding: 8px 16px;
+    margin: auto;
+    max-width: 22rem;
+    label {
+      display: flex;
+      flex-direction: column;
+      input,
+      textarea {
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+        &:focus,
+        &:active {
+          outline: none;
+        }
+      }
+    }
+    button {
+      display: block;
+      margin-left: auto;
+      background-color: dodgerblue;
+      color: whitesmoke;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 1.2rem;
+      &:hover {
+        background-color: hsl(210, 89%, 45%);
+      }
+    }
+  }
+</style>
