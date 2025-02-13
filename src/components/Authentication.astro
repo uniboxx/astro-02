@@ -24,14 +24,3 @@ const username = session?.user?.name;
     align-self: end;
   }
 </style>
-
-<script>
-  const signin = document.getElementById('signin');
-  const btns = document.getElementById('btns');
-  const buttons = btns?.querySelectorAll('button');
-
-  signin?.addEventListener('click', (e) => {
-    btns?.classList.toggle('open');
-    buttons?.forEach((button) => button.toggleAttribute('disabled'));
-  });
-</script>

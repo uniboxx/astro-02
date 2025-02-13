@@ -2,12 +2,12 @@
   import AuthBtn from '@components/AuthBtn.svelte';
   import githubLogo from '@assets/images/github.png';
   import googleLogo from '@assets/images/google.png';
-  let open = $state(false);
+  import { isOpen } from '../stores';
 </script>
 
 <div id="dropdown">
-  <button id="signin" onclick={() => (open = !open)}>Signin</button>
-  <div id="btns" class:open>
+  <button id="signin" onclick={() => isOpen.set(!$isOpen)}>Signin</button>
+  <div id="btns" class={$isOpen ? 'open' : ''}>
     <AuthBtn mode="signinWithGithub" logo={githubLogo} disabled />
     <hr />
     <AuthBtn mode="signinWithGoogle" logo={googleLogo} disabled />
