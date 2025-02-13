@@ -4,54 +4,83 @@
   const { username } = $props();
 
   let open = $state(false);
-  function toggle() {
-    open = !open;
-  }
 </script>
 
-<div id="dropdown" class="relative py-2 px-4" class:open>
-  <button id="name" class="relative flex items-center" onclick={toggle}
+<div id="dropdown" class:open>
+  <button id="name" onclick={() => (open = !open)}
     >{username}
-    <span class={`ml-2 ${open ? 'rotate' : ''}`}>&#9650;</span>
+    <span class={open ? 'rotate' : ''}>&#9650;</span>
   </button>
-  <ul id="submenu" class="absolute border-1 border-gray-200 right-8" class:open>
+  <ul id="submenu" class:open>
     <li>
-      <button
-        class="px-4 py-2 cursor-pointer underline"
-        id="logout"
-        onclick={signout}
-        disabled={!open}
-      >
-        Logout
-      </button>
+      <button id="logout" onclick={signout} disabled={!open}> Logout </button>
     </li>
   </ul>
 </div>
 
 <style>
+  #dropdown {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
   #name,
   #logout {
     cursor: pointer;
   }
   #name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     z-index: 10;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
     span {
       transition: 0.3s;
+      position: relative;
+      bottom: 2px;
       &.rotate {
         transform: rotate(-180deg);
-        transform-origin: 50% 57%;
+        transform-origin: 50% 60%;
       }
+    }
+    @media screen and (min-width: 30rem) {
+      font-size: 1.2rem;
     }
   }
   #submenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
     z-index: 0;
-    transform: translateY(-1.5rem);
-    opacity: 0;
+    top: 100%;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    list-style: none;
     transition: 0.3s;
     &.open {
-      transform: translateY(0);
-      opacity: 100;
       z-index: 10;
+      max-height: 6rem;
+    }
+    li {
+      button {
+        font-size: 1rem;
+        padding: 5px 10px;
+        background-color: white;
+        border: 1px solid lightgray;
+      }
+      @media screen and (min-width: 30rem) {
+        button {
+          font-size: 1.1rem;
+        }
+      }
     }
   }
 </style>

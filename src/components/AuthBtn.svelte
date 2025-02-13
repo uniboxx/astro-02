@@ -1,7 +1,7 @@
 <script lang="ts">
   import { signinWithGithub, signinWithGoogle } from '@utils/auth-client';
 
-  const { mode, logo, disabled } = $props();
+  const { mode, logo, disabled = false } = $props();
   let text =
     mode[0].toUpperCase() +
     mode.slice(1, 6) +
@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 5px 10px;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     background-color: transparent;
@@ -41,7 +41,6 @@
   }
   @media screen and (min-width: 30rem) {
     button {
-      border: 1px solid lightgray;
       img {
         width: 1.25rem;
       }

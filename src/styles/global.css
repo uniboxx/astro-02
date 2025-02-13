@@ -16,10 +16,13 @@ menu {
   gap: 30px;
   li {
     text-decoration: underline;
-    padding: 5px 10px;
     a {
       text-decoration: none;
       color: inherit;
     }
   }
+}
+
+button {
+  background-color: transparent;
 }

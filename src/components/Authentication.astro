@@ -9,37 +9,47 @@ const session = await auth.api.getSession({
   headers: Astro.request.headers,
 });
 const username = session?.user?.name;
-const disabled = true;
 ---
 
-{
-  username ? (
-    <div class="flex items-center justify-end w-full gap-4 px-2 md:px-4 md:w-max md:order-2">
+<section id="authentication">
+  {
+    username ? (
       <Username username={username} client:load />
-    </div>
-  ) : (
-    <div id="dropdown">
-      <p id="signin">Signin with socials</p>
-      <div id="btns">
-        <AuthBtn
-          client:only
-          mode="signinWithGithub"
-          logo={githubLogo}
-          disabled={disabled}
-        />
-        <hr />
-        <AuthBtn
-          client:only
-          mode="signinWithGoogle"
-          logo={googleLogo}
-          disabled={disabled}
-        />
-        {/* <AuthBtn client:load mode="signup" /> */}
+    ) : (
+      <div id="dropdown">
+        <p id="signin">Signin</p>
+        <div id="btns">
+          <AuthBtn
+            client:load
+            mode="signinWithGithub"
+            logo={githubLogo}
+            disabled
+          />
+          <hr />
+          <AuthBtn
+            client:load
+            mode="signinWithGoogle"
+            logo={googleLogo}
+            disabled
+          />
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+</section>
 <style>
+  #authentication {
+    align-self: end;
+  }
+  .username {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 8px;
+    @media screen and (min-width: 30rem) {
+      padding: 0 16px;
+    }
+  }
   #dropdown {
     position: relative;
     display: flex;
@@ -47,50 +57,42 @@ const disabled = true;
     gap: 4px;
     padding: 0 8px;
     margin-left: auto;
-    width: max-content;
   }
   #signin {
     width: 11.5rem;
     z-index: 20;
-    padding: 5px 10px;
+    padding: 10px;
     border: 1px solid lightgray;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
   }
   #btns {
+    display: flex;
     position: absolute;
     top: 100%;
-    display: flex;
     flex-direction: column;
-    gap: 8px;
+    justify-content: center;
     align-items: center;
+    padding: 8px 0;
+    gap: 6px;
     transition: 0.4s;
     z-index: 0;
-    max-height: 0rem;
+    max-height: 0;
     overflow: hidden;
-    border-left: 1px solid #d3d3d3;
-    border-right: 1px solid #d3d3d3;
     width: 11.5rem;
     background-color: rgb(255 251 235);
     hr {
       width: 80%;
-    }
-
-    @media screen and (min-width: 480px) {
-      position: static;
-      max-height: unset;
-      flex-direction: row;
-      border: none;
-      overflow: unset;
-      background-color: transparent;
-      width: max-content;
+      color: lightgray;
+      height: 1px;
     }
 
     &.open {
-      /* transform: translateY(2.5rem); */
       max-height: 6rem;
       z-index: 10;
+      border-left: 1px solid #d3d3d3;
+      border-right: 1px solid #d3d3d3;
       border-bottom: 1px solid #d3d3d3;
       & button {
         cursor: pointer;
@@ -103,21 +105,15 @@ const disabled = true;
       margin-left: 0;
       order: 2;
     }
-    #signin {
-      display: none;
-    }
-    #btns hr {
-      display: none;
-    }
   }
 </style>
 
 <script>
   const btns = document.getElementById('btns');
   const buttons = btns?.querySelectorAll('button');
-  console.log(buttons);
+
   document.getElementById('signin')?.addEventListener('click', (e) => {
     btns?.classList.toggle('open');
-    buttons?.forEach((button) => (button.disabled = !button.disabled));
+    buttons?.forEach((button) => button.toggleAttribute('disabled'));
   });
 </script>

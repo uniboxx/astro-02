@@ -15,32 +15,33 @@ import Authentication from '@components/Authentication.astro';
 <style>
   header {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    padding: 4px;
-    gap: 16px;
+    padding: 1rem 4px;
+    gap: 1rem;
+    @media screen and (min-width: 30rem) {
+      padding: 1rem 2rem;
+      justify-content: space-between;
+      flex-direction: row;
+    }
 
     menu {
       position: relative;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
       order: 2;
       z-index: 5;
-      gap: 8px;
+      gap: 1rem;
       li {
         a {
           font-size: 1.125rem;
           text-decoration: underline;
         }
       }
-    }
-  }
-  @media screen and (min-width: 30rem) {
-    header {
-      padding: 16px;
+      @media screen and (min-width: 30rem) {
+        order: 0;
+      }
     }
   }
 </style>
