@@ -8,9 +8,9 @@
 <div id="dropdown">
   <button id="signin" onclick={() => isOpen.set(!$isOpen)}>Signin</button>
   <div id="btns" class={$isOpen ? 'open' : ''}>
-    <AuthBtn mode="signinWithGithub" logo={githubLogo} disabled />
+    <AuthBtn mode="signinWithGithub" logo={githubLogo} disabled={!$isOpen} />
     <hr />
-    <AuthBtn mode="signinWithGoogle" logo={googleLogo} disabled />
+    <AuthBtn mode="signinWithGoogle" logo={googleLogo} disabled={!$isOpen} />
   </div>
 </div>
 
