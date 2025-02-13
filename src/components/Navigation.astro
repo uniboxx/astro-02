@@ -1,0 +1,48 @@
+---
+import { auth } from '@utils/auth';
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+const username = session?.user?.name;
+const email = session?.user?.email;
+
+console.log(session?.user);
+const admin =
+  (email === 'pedrottimail@gmail.com' || email === 'uniboxx@duck.com') &&
+  session?.user.emailVerified;
+---
+
+<menu>
+  <li><a href="/">Home</a></li>
+
+  {
+    admin && (
+      <li>
+        <a href="/add-post">Add Post</a>
+      </li>
+    )
+  }
+  <li><a href="/dogs">Dogs</a></li>
+  <li><a href="/blog">Blog</a></li>
+</menu>
+
+<style>
+  menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    order: 2;
+    z-index: 5;
+    gap: 1rem;
+    li {
+      a {
+        font-size: 1.125rem;
+        text-decoration: underline;
+      }
+    }
+    @media screen and (min-width: 30rem) {
+      order: 0;
+    }
+  }
+</style>

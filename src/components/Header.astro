@@ -1,14 +1,10 @@
 ---
+import Navigation from '@components/Navigation.astro';
 import Authentication from '@components/Authentication.astro';
 ---
 
 <header>
-  <menu>
-    <li><a href="/">Home</a></li>
-    <li><a href="/add-post">Add Post</a></li>
-    <li><a href="/dogs">Dogs</a></li>
-    <li><a href="/blog">Blog</a></li>
-  </menu>
+  <Navigation />
   <Authentication />
 </header>
 
@@ -25,31 +21,5 @@ import Authentication from '@components/Authentication.astro';
       justify-content: space-between;
       flex-direction: row;
     }
-
-    menu {
-      position: relative;
-      display: flex;
-      align-items: center;
-      order: 2;
-      z-index: 5;
-      gap: 1rem;
-      li {
-        a {
-          font-size: 1.125rem;
-          text-decoration: underline;
-        }
-      }
-      @media screen and (min-width: 30rem) {
-        order: 0;
-      }
-    }
   }
 </style>
-
-<script>
-  // const { signIn, signOut } = await import('auth-astro/client');
-  // (document.querySelector('#login')! as HTMLButtonElement).onclick = () =>
-  //   signIn('github');
-  // (document.querySelector('#logout')! as HTMLButtonElement).onclick = () =>
-  //   signOut();
-</script>
