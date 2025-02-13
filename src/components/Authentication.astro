@@ -8,6 +8,7 @@ const session = await auth.api.getSession({
   headers: Astro.request.headers,
 });
 const username = session?.user?.name;
+console.log(session?.user);
 ---
 
 <section id="authentication">
