@@ -4,7 +4,7 @@ import { auth } from '@utils/auth';
 const session = await auth.api.getSession({
   headers: Astro.request.headers,
 });
-const username = session?.user?.name;
+
 const email = session?.user?.email;
 
 console.log(session?.user);
@@ -23,7 +23,7 @@ const admin =
       </li>
     )
   }
-  <li><a href="/dogs">Dogs</a></li>
+  <!-- <li><a href="/dogs">Dogs</a></li> -->
   <li><a href="/blog">Blog</a></li>
 </menu>
 

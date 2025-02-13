@@ -1,8 +1,27 @@
 ---
 import PostForm from '../components/PostForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+import { auth } from '@utils/auth';
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+
+const email = session?.user?.email;
+
+console.log(session?.user);
+const admin =
+  (email === 'pedrottimail@gmail.com' || email === 'uniboxx@duck.com') &&
+  session?.user.emailVerified;
 ---
 
-<BaseLayout pageTitle="Add Post">
-  <PostForm />
-</BaseLayout>
+{
+  admin ? (
+    <BaseLayout pageTitle="Add Post">
+      <PostForm />
+    </BaseLayout>
+  ) : (
+    <BaseLayout pageTitle="Page Not Found" />
+  )
+}

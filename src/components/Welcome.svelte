@@ -1,4 +1,4 @@
 <script lang="ts">
 </script>
 
-<span>Svelte 5</span>
+<span>Svelte 5 + Turso</span>

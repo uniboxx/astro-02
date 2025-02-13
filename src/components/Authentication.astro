@@ -16,24 +16,27 @@ const username = session?.user?.name;
     username ? (
       <Username username={username} client:load />
     ) : (
-      <div id="dropdown">
-        <p id="signin">Signin</p>
-        <div id="btns">
-          <AuthBtn
-            client:load
-            mode="signinWithGithub"
-            logo={githubLogo}
-            disabled
-          />
-          <hr />
-          <AuthBtn
-            client:load
-            mode="signinWithGoogle"
-            logo={googleLogo}
-            disabled
-          />
+      <section>
+        <div id="backdrop" />
+        <div id="dropdown">
+          <p id="signin">Signin</p>
+          <div id="btns">
+            <AuthBtn
+              client:load
+              mode="signinWithGithub"
+              logo={githubLogo}
+              disabled
+            />
+            <hr />
+            <AuthBtn
+              client:load
+              mode="signinWithGoogle"
+              logo={googleLogo}
+              disabled
+            />
+          </div>
         </div>
-      </div>
+      </section>
     )
   }
 </section>
@@ -41,15 +44,7 @@ const username = session?.user?.name;
   #authentication {
     align-self: end;
   }
-  .username {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 0 8px;
-    @media screen and (min-width: 30rem) {
-      padding: 0 16px;
-    }
-  }
+
   #dropdown {
     position: relative;
     display: flex;
@@ -74,14 +69,14 @@ const username = session?.user?.name;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 8px 0;
-    gap: 6px;
+
     transition: 0.4s;
     z-index: 0;
     max-height: 0;
     overflow: hidden;
     width: 11.5rem;
     background-color: rgb(255 251 235);
+
     hr {
       width: 80%;
       color: lightgray;
