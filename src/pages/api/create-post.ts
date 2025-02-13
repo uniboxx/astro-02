@@ -13,7 +13,6 @@ export const POST: APIRoute = async function ({ request, redirect }) {
     author = xss(author.toString());
     body = xss(body.toString());
 
-    console.log(author, body);
     await turso.execute({
       sql: 'INSERT INTO posts (author, body) VALUES(?,?)',
       args: [author, body],

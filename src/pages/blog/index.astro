@@ -6,7 +6,7 @@ const posts = await getCollection('blog');
 ---
 
 <BaseLayout pageTitle="Blog">
-  <ul class="max-w-max m-auto underline">
+  <ul>
     {
       posts.map((post) => (
         <li>

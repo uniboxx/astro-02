@@ -10,7 +10,6 @@ const session = await auth.api.getSession({
 
 const email = session?.user?.email;
 
-console.log(session?.user);
 const admin =
   (email === 'pedrottimail@gmail.com' || email === 'uniboxx@duck.com') &&
   session?.user.emailVerified;

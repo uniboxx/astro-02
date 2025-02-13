@@ -7,7 +7,7 @@ export function createHash(plainPassword: string) {
     if (err) {
       throw new Error('Something went wrong hashing password');
     }
-    console.log(hash);
+
     compareHash('password', hash);
   });
 }
@@ -17,7 +17,7 @@ export function compareHash(plainPassword: string, hash: string) {
     if (err) {
       throw new Error('Something went wrong checking password');
     }
-    console.log(result);
+
   });
 }
 

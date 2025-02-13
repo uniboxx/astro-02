@@ -1,0 +1,42 @@
+---
+const { post, create, update } = Astro.props;
+---
+
+<div class="postcard">
+  <p><span>Author: </span>{post.author}</p>
+
+  <p>
+    <span class="min-w-20">Created:</span>
+    <span>
+      {create}
+    </span>
+  </p>
+  {
+    create !== update && (
+      <p>
+        <span class="min-w-20">Updated:</span>
+        <span>{update}</span>
+      </p>
+    )
+  }
+  <p class="text-center">Content</p>
+  <p>{post.body}</p>
+</div>
+
+<style>
+  .postcard {
+    padding: 1rem 0.5rem;
+    @media screen and (min-width: 30rem) {
+      padding: 2rem 1rem;
+    }
+    p {
+      display: flex;
+      span:first-child {
+        min-width: 5rem;
+      }
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid lightgray;
+    }
+  }
+</style>

@@ -14,12 +14,10 @@ menu {
   list-style: none;
   display: flex;
   gap: 30px;
-  li {
-    text-decoration: underline;
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 

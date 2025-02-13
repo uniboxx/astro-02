@@ -1,73 +1,45 @@
 ---
 export const prerender = false;
 import { turso } from '../turso';
+import PostCard from './PostCard.astro';
 
 const { rows: posts } = await turso.execute('select * from posts');
- const options: Intl.DateTimeFormatOptions = {
-                weekday: 'long',
-                day:'2-digit',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'Europe/Rome',
-              }
-function createDate(str:string) {
-          const date:Date = new Date(str.split(' ').join('T') + '.000Z');
-          return new Intl.DateTimeFormat('it-IT', options).format(date)
-        } 
+const options: Intl.DateTimeFormatOptions = {
+  weekday: 'long',
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Europe/Rome',
+};
+function createDate(str: string) {
+  const date: Date = new Date(str.split(' ').join('T') + '.000Z');
+  return new Intl.DateTimeFormat('it-IT', options).format(date);
+}
 ---
-<h2 >Posts</h2>
-  <div id="posts" class="max-w-90 m-auto">
-    {
-      posts.map((post: any) => {
-        const createdAt = createDate(post.created_at); 
-        const updatedAt = createDate(post.updated_at);
 
-        return (
-          <div  class="post">
-            <p><span>Author: </span>{post.author}</p>
-            
-            <p >
-              <span class="min-w-20">Created:</span>
-              <span>
-              {(createdAt)}
-                </span>
-            </p>
-           { createdAt !== updatedAt &&  <p>
-           <span class="min-w-20">Updated:</span>
-              <span>
-                {(updatedAt)}
-              </span>
-            </p>}
-            <p class="text-center">Content </p>
-            <p>{post.body}</p>
-          </div>
-            <hr class="max-w-[80vw] m-auto mb-2" />
-        );
-      })
-    }
-  </div>
+<h2>Posts</h2>
+<div id="posts" class="max-w-90 m-auto">
+  {
+    posts.map((post: any) => {
+      const createdAt = createDate(post.created_at);
+      const updatedAt = createDate(post.updated_at);
+
+      return <PostCard post={post} create={createdAt} update={updatedAt} />;
+    })
+  }
+</div>
 
 <style>
-  h2{
+  h2 {
     font-size: 1.5rem;
     text-align: center;
     padding: 2;
     font-weight: bold;
   }
-  #posts{
+  #posts {
     max-width: 30rem;
     margin: auto;
-    .post{
-      padding: 8px;
-      p {
-        display: flex;
-        span:first-child{ 
-        min-width: 5rem;
-      }
-    }
-      
-    }
   }
 </style>

@@ -25,5 +25,4 @@ export async function signin(email: string, password: string) {
       //callbacks
     }
   );
-  console.log(data, error);
 }

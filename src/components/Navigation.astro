@@ -1,5 +1,6 @@
 ---
 import { auth } from '@utils/auth';
+import Link from './Link.astro';
 
 const session = await auth.api.getSession({
   headers: Astro.request.headers,
@@ -7,42 +8,30 @@ const session = await auth.api.getSession({
 
 const email = session?.user?.email;
 
-console.log(session?.user);
 const admin =
   (email === 'pedrottimail@gmail.com' || email === 'uniboxx@duck.com') &&
   session?.user.emailVerified;
 ---
 
 <menu>
-  <li><a href="/">Home</a></li>
+  <Link href="/">Home</Link>
 
-  {
-    admin && (
-      <li>
-        <a href="/add-post">Add Post</a>
-      </li>
-    )
-  }
+  {admin && <Link href="/add-post">Add Post</Link>}
   <!-- <li><a href="/dogs">Dogs</a></li> -->
-  <li><a href="/blog">Blog</a></li>
-</menu>
+  <Link href="/blog">Blog</Link>
 
-<style>
-  menu {
-    position: relative;
-    display: flex;
-    align-items: center;
-    order: 2;
-    z-index: 5;
-    gap: 1rem;
-    li {
-      a {
-        font-size: 1.125rem;
-        text-decoration: underline;
+  <style>
+    menu {
+      position: relative;
+      display: flex;
+      align-items: center;
+      order: 2;
+      z-index: 5;
+      gap: 2rem;
+
+      @media screen and (min-width: 30rem) {
+        order: 0;
       }
     }
-    @media screen and (min-width: 30rem) {
-      order: 0;
-    }
-  }
-</style>
+  </style>
+</menu>
