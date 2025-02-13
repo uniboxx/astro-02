@@ -1,7 +1,7 @@
 <script lang="ts">
   import { signout } from '@utils/sign-out';
 
-  const { username } = $props();
+  const { username, email } = $props();
 
   let open = $state(false);
 </script>
@@ -11,6 +11,7 @@
     >{username}
     <span class={open ? 'rotate' : ''}>&#9650;</span>
   </button>
+  <p>{email}</p>
   <ul id="submenu" class:open>
     <li>
       <button id="logout" onclick={signout} disabled={!open}> Logout </button>

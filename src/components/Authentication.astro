@@ -8,13 +8,13 @@ const session = await auth.api.getSession({
   headers: Astro.request.headers,
 });
 const username = session?.user?.name;
-console.log(session?.user);
+const email = session?.user?.email;
 ---
 
 <section id="authentication">
   {
     username ? (
-      <Username username={username} client:load />
+      <Username username={username} email={email} client:load />
     ) : (
       <SignInBtn client:load />
     )
