@@ -33,3 +33,14 @@ const { pageTitle, heading1 = pageTitle } = Astro.props;
     text-align: center;
   }
 </style>
+
+<script>
+  const dropdown = document.getElementById('dropdown');
+  const btns = document.getElementById('btns');
+
+  document.addEventListener('click', (e: Event) => {
+    if (!dropdown?.contains(e.target as Node)) {
+      btns?.classList.remove('open');
+    }
+  });
+</script>

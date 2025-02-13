@@ -1,9 +1,8 @@
 ---
 import { auth } from '@utils/auth';
-import AuthBtn from './AuthBtn.svelte';
+
 import Username from '@components/Username.svelte';
-import githubLogo from '@assets/images/github.png';
-import googleLogo from '@assets/images/google.png';
+import SignInBtn from '@components/SignInBtn.svelte';
 
 const session = await auth.api.getSession({
   headers: Astro.request.headers,
@@ -16,27 +15,7 @@ const username = session?.user?.name;
     username ? (
       <Username username={username} client:load />
     ) : (
-      <section>
-        <div id="backdrop" />
-        <div id="dropdown">
-          <p id="signin">Signin</p>
-          <div id="btns">
-            <AuthBtn
-              client:load
-              mode="signinWithGithub"
-              logo={githubLogo}
-              disabled
-            />
-            <hr />
-            <AuthBtn
-              client:load
-              mode="signinWithGoogle"
-              logo={googleLogo}
-              disabled
-            />
-          </div>
-        </div>
-      </section>
+      <SignInBtn client:load />
     )
   }
 </section>
@@ -44,70 +23,14 @@ const username = session?.user?.name;
   #authentication {
     align-self: end;
   }
-
-  #dropdown {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 0 8px;
-    margin-left: auto;
-  }
-  #signin {
-    width: 11.5rem;
-    z-index: 20;
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-  }
-  #btns {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    transition: 0.4s;
-    z-index: 0;
-    max-height: 0;
-    overflow: hidden;
-    width: 11.5rem;
-    background-color: rgb(255 251 235);
-
-    hr {
-      width: 80%;
-      color: lightgray;
-      height: 1px;
-    }
-
-    &.open {
-      max-height: 6rem;
-      z-index: 10;
-      border-left: 1px solid #d3d3d3;
-      border-right: 1px solid #d3d3d3;
-      border-bottom: 1px solid #d3d3d3;
-      & button {
-        cursor: pointer;
-      }
-    }
-  }
-  @media screen and (min-width: 30rem) {
-    #dropdown {
-      padding: 0 16px;
-      margin-left: 0;
-      order: 2;
-    }
-  }
 </style>
 
 <script>
+  const signin = document.getElementById('signin');
   const btns = document.getElementById('btns');
   const buttons = btns?.querySelectorAll('button');
 
-  document.getElementById('signin')?.addEventListener('click', (e) => {
+  signin?.addEventListener('click', (e) => {
     btns?.classList.toggle('open');
     buttons?.forEach((button) => button.toggleAttribute('disabled'));
   });
