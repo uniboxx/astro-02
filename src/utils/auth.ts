@@ -1,6 +1,7 @@
 import { betterAuth } from 'better-auth';
 
 import { LibsqlDialect } from '@libsql/kysely-libsql';
+console.log('ENV: ', import.meta.env.DEV);
 
 const dialect = new LibsqlDialect({
   url: import.meta.env.TURSO_DATABASE_URL || '',
@@ -21,8 +22,15 @@ export const auth = betterAuth({
   },
   socialProviders: {
     github: {
-      clientId: import.meta.env.GITHUB_CLIENT_ID as string,
-      clientSecret: import.meta.env.GITHUB_CLIENT_SECRET as string,
+      clientId: import.meta.env.DEV
+        ? (import.meta.env.GITHUB_CLIENT_ID_LOCAL as string)
+        : (import.meta.env.GITHUB_CLIENT_ID as string),
+      clientSecret: import.meta.env.DEV
+        ? (import.meta.env.GITHUB_CLIENT_SECRET_LOCAL as string)
+        : (import.meta.env.GITHUB_CLIENT_SECRET as string),
+      // redirectURI: import.meta.env.DEV
+      //   ? 'http://localhost:4321/api/auth/callback/github'
+      //   : 'https://astro-studying.netlify.app',
     },
     google: {
       clientId: import.meta.env.GOOGLE_CLIENT_ID as string,
