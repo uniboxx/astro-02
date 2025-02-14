@@ -28,9 +28,6 @@ export const auth = betterAuth({
       clientSecret: import.meta.env.DEV
         ? (import.meta.env.GITHUB_CLIENT_SECRET_LOCAL as string)
         : (import.meta.env.GITHUB_CLIENT_SECRET as string),
-      // redirectURI: import.meta.env.DEV
-      //   ? 'http://localhost:4321/api/auth/callback/github'
-      //   : 'https://astro-studying.netlify.app',
     },
     google: {
       clientId: import.meta.env.GOOGLE_CLIENT_ID as string,
