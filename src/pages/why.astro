@@ -1,0 +1,43 @@
+---
+import BaseLayout from 'layouts/BaseLayout.astro';
+import * as why from '../content/why.md';
+import { Content as AboutContent } from '../content/why.md';
+---
+
+<BaseLayout>
+  <article>
+    <p class="pubDate">
+      Pubblicato {
+        new Intl.DateTimeFormat('it-IT', {
+          weekday: 'short',
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        }).format(new Date(why.frontmatter.pubDate))
+      }
+    </p>
+    <AboutContent />
+  </article>
+</BaseLayout>
+
+<style>
+  article {
+    padding: 4px;
+    line-height: 1.7;
+    max-width: 65ch;
+    margin: auto;
+    @media screen and (min-width: 30rem) {
+      padding: 1rem;
+    }
+    h1 {
+      padding: 1rem 0;
+    }
+    p {
+    }
+    .pubDate {
+      text-align: end;
+      color: rgb(5, 5, 105);
+      font-size: 0.85rem;
+    }
+  }
+</style>

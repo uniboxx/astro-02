@@ -10,14 +10,12 @@ const email = session?.user?.email;
 const emailVerified = session?.user?.emailVerified;
 const id = session?.user?.id;
 
-console.log(email);
-
 const admin =
-  (email === 'pedrottimail@gmail.com' && session?.user.emailVerified) ||
+  (email === 'pedrottimail@gmail.com' && emailVerified) ||
   id === import.meta.env.GITHUB_ADMIN_ID;
-console.log('ADMIN ', admin);
-console.log('email verified ', emailVerified);
-console.log('USER', session?.user);
+// console.log('ADMIN ', admin);
+// console.log('email verified ', emailVerified);
+// console.log('USER', session?.user);
 ---
 
 <menu>
@@ -26,6 +24,7 @@ console.log('USER', session?.user);
   {admin && <Link href="/add-post">Add Post</Link>}
   <!-- <li><a href="/dogs">Dogs</a></li> -->
   <Link href="/blog">Blog</Link>
+  <Link href="/why">Why</Link>
 
   <style>
     menu {

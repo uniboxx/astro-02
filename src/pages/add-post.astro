@@ -1,7 +1,6 @@
 ---
 import PostForm from '../components/PostForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 import { auth } from '@utils/auth';
 
 const session = await auth.api.getSession({

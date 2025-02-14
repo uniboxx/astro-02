@@ -39,7 +39,7 @@
     z-index: 10;
     background-color: transparent;
     border: none;
-    font-size: 1rem;
+
     span {
       transition: 0.3s;
       position: relative;
@@ -72,7 +72,6 @@
     }
     li {
       button {
-        font-size: 1rem;
         padding: 5px 10px;
         background-color: white;
         border: 1px solid lightgray;

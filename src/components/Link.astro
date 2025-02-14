@@ -3,16 +3,14 @@ const path = Astro.url.pathname;
 const { href } = Astro.props;
 ---
 
-<a class={path === href ? 'active' : ''} href={href}><slot /></a>
+<a aria-current={path === href} href={href}><slot /></a>
 
 <style>
   a {
-    font-size: 1.2rem;
-    font-weight: normal;
     @media screen and (min-width: 30rem) {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
-    &.active {
+    &[aria-current='true'] {
       text-decoration: underline;
       font-weight: bold;
     }
